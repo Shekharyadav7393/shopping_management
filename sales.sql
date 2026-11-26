@@ -91,6 +91,39 @@ FROM sales
 GROUP BY salesperson
 HAVING count(amount) > 60000;
 
+SELECT
+    region,
+    category,
+    SUM(quantity) AS total_quantity
+FROM sales
+GROUP BY
+    region,
+    category
+HAVING SUM(quantity) >= 12;
+SELECT
+    region,
+    salesperson,
+    SUM(sales_amount) AS total_sales
+FROM sales
+WHERE order_date >= '2026-02-01'
+GROUP BY
+    region,
+    salesperson
+HAVING SUM(sales_amount) > 100000;
+SELECT
+    region,
+    category,
+    salesperson,
+    COUNT(*) AS total_orders,
+    SUM(quantity) AS total_quantity,
+    SUM(sales_amount) AS total_sales_amount
+FROM sales
+GROUP BY
+    region,
+    category,
+    salesperson
+HAVING SUM(sales_amount) >= 50000
+ORDER BY total_sales_amount DESC;
 
 
 
